@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QLabel, QHBoxLayout, QPushButton, QWidget, QSizePoli
 from PyQt5.QtCore import QTimer, Qt, QSize, pyqtSignal
 from PyQt5.QtGui import QFont, QIcon, QColor
 from utils import SvgWidget, QuickStartWidget
+import os
 
 # --------- CUSTOM PYQT5 WIDGETS ------------
 class QClickableLabel(QLabel):
@@ -53,9 +54,10 @@ class ClockLabelWidget(QLabel):
         return datetime.now().strftime('%a, %d %b, %H:%M:%S')
 
 # --------------- QUICKSTART MENU --------------
+absolute_path = os.path.abspath(os.path.dirname(__file__))
 QuickStartWidgetList = []
-QuickStartWidgetList.append(QuickStartWidget("Chrome", "./../res/icon_chrome.svg", r"C:\Program Files\Google\Chrome\Application\chrome.exe"))
-QuickStartWidgetList.append(QuickStartWidget("Command Prompt", "./../res/icon_terminal.svg",r"C:\WINDOWS\system32\cmd.exe"))
+QuickStartWidgetList.append(QuickStartWidget("Chrome", f"{absolute_path}/res/icon_chrome.svg", r"C:\Program Files\Google\Chrome\Application\chrome.exe"))
+QuickStartWidgetList.append(QuickStartWidget("Command Prompt", f"{absolute_path}/res/icon_terminal.svg",r"C:\WINDOWS\system32\cmd.exe"))
 
 class QuickStartContainer(QFrame):
     def __init__(self):
