@@ -54,8 +54,8 @@ class ClockLabelWidget(QLabel):
 
 # --------------- QUICKSTART MENU --------------
 QuickStartWidgetList = []
-QuickStartWidgetList.append(QuickStartWidget("Chrome", "assets/icon_chrome.svg", r"C:\Program Files\Google\Chrome\Application\chrome.exe"))
-QuickStartWidgetList.append(QuickStartWidget("Command Prompt", "assets/icon_terminal.svg",r"C:\WINDOWS\system32\cmd.exe"))
+QuickStartWidgetList.append(QuickStartWidget("Chrome", "./../res/icon_chrome.svg", r"C:\Program Files\Google\Chrome\Application\chrome.exe"))
+QuickStartWidgetList.append(QuickStartWidget("Command Prompt", "./../res/icon_terminal.svg",r"C:\WINDOWS\system32\cmd.exe"))
 
 class QuickStartContainer(QFrame):
     def __init__(self):
