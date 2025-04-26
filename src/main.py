@@ -1,103 +1,48 @@
+from window import WinBar 
+from configs import ConfigManager
+
 import sys
 import ctypes
 from ctypes import wintypes
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout, QLabel, QSpacerItem, QSizePolicy, QGridLayout 
-from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtGui import QFont
-from widgets import ClockContainer, QuickStartContainer
+from PyQt5.QtWidgets import QApplication 
 
-# accessing the core windows libraries needed
-user32 = ctypes.windll.user32
-shell32 = ctypes.windll.shell32
-
-# declaring AppBar Message hex codes
+user32       = ctypes.windll.user32
+shell32      = ctypes.windll.shell32
 ABM_NEW      = 0x00000000  # register new AppBar
 ABM_REMOVE   = 0x00000001  # unregister AppBar
 ABM_QUERYPOS = 0x00000002  # checks input pos against screen for overlaps 
 ABM_SETPOS   = 0x00000003  # reserves queried pos on screen for AppBar
-ABE_TOP = 1  # Location: top edge of screen
+ABE_TOP      = 1           # location: top edge of screen
 
-# AppBar Constants
-APPBAR_HEIGHT = 50
+def create_main_winbar(main_config):
+    screen = QApplication.primaryScreen().geometry()
+    winbar = Window(0,0,screen.width(), main_config.get("window")["height"])
+    winbar.setWindowFlags(Qt.FramelessWindowHint | Qt.Tool)
+    winbar.selfAttribute(Qt.WA_TranslucentBackground)
+    register_main_winbar(winbar)
+    return winbar 
 
-class APPBARDATA(ctypes.Structure):
-    _fields_ = [
-        ("cbSize", wintypes.DWORD),
-        ("hWnd", wintypes.HWND),
-        ("uCallbackMessage", wintypes.UINT),
-        ("uEdge", wintypes.UINT),
-        ("rc", wintypes.RECT),
-        ("lParam", wintypes.LPARAM)
-    ]
+def register_main_winbar(winbar):
+    appbar_data = APPBARDATA()
+    appbar_data.cbSize = ctypes.sizeof(APPBARDATA)
+    abd.hWnd = winbar.winId()
+    abd.uEdge = ABE_TOP
+    shell32.SHAppBarMessage(ABM_NEW, ctypes.byref(appbar_data))
 
-class AppBarWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
+    appbar_data.rc.left = 0
+    appbar_data.rc.top = 0
+    appbar_data.rc.right = winbar.get_width()
+    appbar_data.rc.bottom = winbar.get_height()
 
-        # sets this AppBar as a borderless window that doesn't show up on the taskbar
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.Tool)
-        # sets window as completely transparent
-        self.setAttribute(Qt.WA_TranslucentBackground)
-
-        # returns the dimensions of the screen and sets current QMainWindow dimensions
-        screen = QApplication.primaryScreen().geometry()
-        self.setGeometry(0, 0, screen.width(), APPBAR_HEIGHT)
-
-        self.create_appbar_gui()
-
-        self.register_appbar()
-
-    def create_appbar_gui(self):
-        # initializes a central widget within current QMainWindow
-        central_widget_container = QWidget()
-        self.setCentralWidget(central_widget_container)
-
-        # creates a horizontally stacked widget layout and sets it as the layout of the central widget
-        main_layout = QGridLayout()
-        main_layout.setContentsMargins(10,0,10,0)
-        central_widget_container.setLayout(main_layout)
-
-        main_layout.addWidget(QuickStartContainer(), 0, 0, alignment=Qt.AlignLeft)
-        main_layout.addWidget(ClockContainer(), 0, 1, alignment=Qt.AlignCenter)
-        main_layout.addWidget(QWidget(), 0, 2)
-        main_layout.setColumnStretch(0,1)
-        main_layout.setColumnStretch(1,0)
-        main_layout.setColumnStretch(2,1)
-
-    def register_appbar(self):
-        hwnd = int(self.winId())
-
-        abd = APPBARDATA()
-        abd.cbSize = ctypes.sizeof(APPBARDATA)
-        abd.hWnd = hwnd
-        abd.uEdge = ABE_TOP
-
-        shell32.SHAppBarMessage(ABM_NEW, ctypes.byref(abd))
-
-        screen = QApplication.primaryScreen().geometry()
-        abd.rc.left = 0
-        abd.rc.top = 0
-        abd.rc.right = screen.width()
-        abd.rc.bottom = APPBAR_HEIGHT 
-
-        shell32.SHAppBarMessage(ABM_QUERYPOS, ctypes.byref(abd))
-        shell32.SHAppBarMessage(ABM_SETPOS, ctypes.byref(abd))
-
-        self.setGeometry(QRect(
-            abd.rc.left, abd.rc.top,
-            abd.rc.right - abd.rc.left,
-            abd.rc.bottom - abd.rc.top
-        ))
-
-    def closeEvent(self, event):
-        abd = APPBARDATA()
-        abd.cbSize = ctypes.sizeof(APPBARDATA)
-        abd.hWnd = int(self.winId())
-        shell32.SHAppBarMessage(ABM_REMOVE, ctypes.byref(abd))
-        event.accept()
+    shell32.SHAppBarMessage(ABM_QUERYPOS, ctypes.byref(appbar_data))
+    shell32.SHAppBarMessage(ABM.SETPOS, ctypes.byref(appbar_data))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = AppBarWindow()
-    window.show()
+    config_manager = ConfigManager()
+
+    winbar = WinBar(config_manager.get("main").get("winbar")["height"])
+    winbar.set_gui_margins(config_manager.get("main").get("winbar")["margins"])
+    config_manager.retrieve_components(winbar)
+
     sys.exit(app.exec_())

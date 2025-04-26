@@ -23,36 +23,6 @@ class QClickableLabel(QLabel):
     def leaveEvent(self, event):
         self.setCursor(Qt.ArrowCursor)
 
-# ------- CLOCK CONTAINER -----------
-class ClockContainer(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setFixedSize(250, 40)
-        self.setStyleSheet("""
-            color: white;
-            background: rgba(0,0,0,150);
-            border-radius: 20px;
-        """)
-        self.layout = QHBoxLayout()
-        self.layout.setContentsMargins(0,0,0,0)
-        self.layout.addWidget(ClockLabelWidget())
-        self.setLayout(self.layout)
-
-class ClockLabelWidget(QLabel):
-    def __init__(self):
-        super().__init__(self.get_time_str())
-        self.update()
-        self.setAlignment(Qt.AlignCenter)
-        self.setFont(QFont("Unageo", 12, QFont.Medium))
-
-    def update(self):
-        self.timer = QTimer()
-        self.timer.timeout.connect(lambda: self.setText(self.get_time_str()))
-        self.timer.start(1000)
-
-    def get_time_str(self):
-        return datetime.now().strftime('%a, %d %b, %H:%M:%S')
-
 # --------------- QUICKSTART MENU --------------
 absolute_path = os.path.abspath(os.path.dirname(__file__))
 QuickStartWidgetList = []
