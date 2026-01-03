@@ -1,7 +1,8 @@
 from datetime import datetime
-from PyQt5.QtWidgets import QLabel, QHBoxLayout, QPushButton, QWidget, QSizePolicy, QFrame
-from PyQt5.QtCore import QTimer, Qt, QSize, pyqtSignal
-from PyQt5.QtGui import QFont, QIcon, QColor
+from typing import override
+from PyQt6.QtWidgets import QLabel, QHBoxLayout, QPushButton, QWidget, QSizePolicy, QFrame
+from PyQt6.QtCore import QTimer, Qt, QSize, pyqtSignal
+from PyQt6.QtGui import QFont, QIcon, QColor
 from utils import SvgWidget, QuickStartWidget
 import os
 
@@ -13,15 +14,15 @@ class QClickableLabel(QLabel):
         super().__init__()
 
     def mouseReleaseEvent(self, event):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             self.clicked.emit()
         super().mouseReleaseEvent(event)
 
     def enterEvent(self, event):
-        self.setCursor(Qt.PointingHandCursor)
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
 
     def leaveEvent(self, event):
-        self.setCursor(Qt.ArrowCursor)
+        self.setCursor(Qt.CursorShape.ArrowCursor)
 
 # --------------- QUICKSTART MENU --------------
 absolute_path = os.path.abspath(os.path.dirname(__file__))

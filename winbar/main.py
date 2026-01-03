@@ -4,7 +4,8 @@ from configs import ConfigManager
 import sys
 import ctypes
 from ctypes import wintypes
-from PyQt5.QtWidgets import QApplication 
+from PyQt6.QtWidgets import QApplication 
+from PyQt6.QtCore import Qt
 
 user32       = ctypes.windll.user32
 shell32      = ctypes.windll.shell32
@@ -17,8 +18,8 @@ ABE_TOP      = 1           # location: top edge of screen
 def create_main_winbar(main_config):
     screen = QApplication.primaryScreen().geometry()
     winbar = Window(0,0,screen.width(), main_config.get("window")["height"])
-    winbar.setWindowFlags(Qt.FramelessWindowHint | Qt.Tool)
-    winbar.selfAttribute(Qt.WA_TranslucentBackground)
+    winbar.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Tool)
+    winbar.selfAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
     register_main_winbar(winbar)
     return winbar 
 

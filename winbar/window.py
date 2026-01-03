@@ -5,15 +5,6 @@ from collections import defaultdict
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QHBoxLayout, QSizePolicy, QLayout, QGridLayout
 from PyQt5.QtCore import Qt
 
-class APPBARDATA(ctypes.Structure):
-    _fields_ = [
-        ("cbSize", wintypes.DWORD),
-        ("hWnd", wintypes.HWND),
-        ("uCallbackMessage", wintypes.UINT),
-        ("uEdge", wintypes.UINT),
-        ("rc", wintypes.RECT),
-        ("lParam", wintypes.LPARAM)
-    ]
 
 class Window(QMainWindow):
     def __init__(self):
