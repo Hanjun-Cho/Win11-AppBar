@@ -2,12 +2,18 @@ import ctypes
 from PySide6.QtWidgets import QWidget, QApplication
 from PySide6.QtCore import Qt
 from windowsdll import APPBARDATA, AppbarRegistrationCodes, AppbarDirection, WindowsDLL
+from configs.layout_config import LayoutFields
 
 class Winbar(QWidget):
-    def __init__(self, screen):
+    def __init__(self, screen, config_manager):
         super().__init__()
+        layout_config = config_manager.get_layout_config()
+        winbar_component_height = layout_config[LayoutFields.WINBAR_COMPONENT_HEIGHT]
+        winbar_top_margin = layout_config[LayoutFields.WINBAR_MARGINS][LayoutFields.TOP]
+        winbar_bottom_margin = layout_config[LayoutFields.WINBAR_MARGINS][LayoutFields.BOTTOM]
+
+        self.winbar_height = winbar_component_height + winbar_top_margin + winbar_bottom_margin
         self.winbar_width  = screen.geometry().width()
-        self.winbar_height = 50
         
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.Tool | Qt.WindowStaysOnTopHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
