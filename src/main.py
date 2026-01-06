@@ -4,6 +4,7 @@ from configs.config_manager import ConfigManager
 from configs.component_manager import ComponentManager
 from PySide6.QtWidgets import QApplication
 from winbar import Winbar
+from configs.layout_config import LayoutFields
 
 if __name__ == "__main__":
     config_dir = os.path.expanduser("~/Documents/Winbar")
@@ -15,5 +16,6 @@ if __name__ == "__main__":
     component_layout = component_manager.get_component_layout()
     screen = QApplication.primaryScreen()
     winbar = Winbar(screen, config_manager)
+    winbar.setStyleSheet(f"""font-family: {config_manager.get_layout_config()[LayoutFields.GLOBAL_FONT]}""")
     winbar.populate_gui(component_layout)
     sys.exit(app.exec())

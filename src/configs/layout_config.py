@@ -9,6 +9,7 @@ class LayoutFields(StrEnum):
     RIGHT = "right"
     TOP = "top"
     BOTTOM = "bottom"
+    GLOBAL_FONT = "global_font"
 
 class Layout(Config):
     def __init__(self, config_path, current_dir):
