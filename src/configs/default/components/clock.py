@@ -33,7 +33,6 @@ def get_widget(layout_config):
     widget.setStyleSheet(f"""
         border-radius: {layout_config[LayoutFields.WINBAR_COMPONENT_HEIGHT] // 2}px;
         background-color: #222222;
-        font-family: "Roboto";
         font-size: 14px;
     """)
     return widget 
