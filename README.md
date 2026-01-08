@@ -1,3 +1,8 @@
+# Winbar
+An extensible module-based utility bar for Windows written in **Python** and **PySide6**
+
+https://github.com/user-attachments/assets/e3ca87f3-0f50-4354-bf26-357ca409e112
+
 ## Roadmap
 - [ ] Default Configuration Components
     - [x] Clock
