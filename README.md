@@ -25,7 +25,6 @@ https://github.com/user-attachments/assets/e3ca87f3-0f50-4354-bf26-357ca409e112
 ```
 python -m venv venv
 venv\Scripts\activate.bat
-cd src
 pip install -r requirements.txt
 python main.py
 ```
@@ -36,7 +35,6 @@ python main.py
 alias winpy="/mnt/c/Users/<username>/AppData/Local/Programs/Python/<pythonVersion>/python.exe"
 winpy -m venv venv
 ./venv/Scripts/activate
-cd src
 ./venv/Scripts/pip.exe install -r requirements.txt
 winpy main.py
 ```
