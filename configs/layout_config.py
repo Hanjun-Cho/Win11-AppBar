@@ -10,6 +10,7 @@ class LayoutFields(StrEnum):
     TOP = "top"
     BOTTOM = "bottom"
     GLOBAL_FONT = "global_font"
+    GLOBAL_FONT_SIZE = "global_font_size"
 
 class Layout(Config):
     def __init__(self, config_path, current_dir):

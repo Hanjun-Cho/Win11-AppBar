@@ -14,7 +14,10 @@ https://github.com/user-attachments/assets/e3ca87f3-0f50-4354-bf26-357ca409e112
         - [ ] Brightness Control
         - [ ] Wifi Select
 - [ ] Customizability
+    - [X] Global Font Default Size
     - [ ] Colors in config files for global color settings
+- [ ] Fixes
+    - [ ] Backchecking Existing Config File for Updated Setting Fields
 
 ## Setup 
 > [!Important]

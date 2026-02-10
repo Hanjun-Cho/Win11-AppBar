@@ -6,5 +6,6 @@
     "top": 5,
     "bottom": 5
   },
-  "global_font": "Roboto"
+  "global_font": "Roboto",
+  "global_font_size": 12
 }
