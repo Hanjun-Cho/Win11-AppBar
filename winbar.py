@@ -26,10 +26,11 @@ class Winbar(QWidget):
         # sets the winbar to a side of the primary screen
         self.winbar_data.uEdge = AppbarDirection.TOP
 
+        dpi = WindowsDLL.USER32.value.GetDpiForWindow(int(self.winId()))
         self.winbar_data.rc.left = 0
         self.winbar_data.rc.top = 0
         self.winbar_data.rc.right = self.winbar_width
-        self.winbar_data.rc.bottom = self.winbar_height
+        self.winbar_data.rc.bottom = self.winbar_height * dpi // 96
 
         # gives Windows Winbar data to reserve space at desired position
         self.register_winbar()
