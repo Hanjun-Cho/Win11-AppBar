@@ -1,6 +1,9 @@
 # Winbar
 An extensible module-based utility bar for Windows written in **Python** and **PySide6**
 
+<img width="1919" height="59" alt="image" src="https://github.com/user-attachments/assets/38dad815-888d-43ce-9e7c-79e424affcc7" />
+
+## Demo
 https://github.com/user-attachments/assets/e3ca87f3-0f50-4354-bf26-357ca409e112
 
 ## Roadmap
