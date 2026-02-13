@@ -13,11 +13,19 @@ https://github.com/user-attachments/assets/e3ca87f3-0f50-4354-bf26-357ca409e112
         - [ ] Audio Control
         - [ ] Brightness Control
         - [ ] Wifi Select
+        - [X] Language Control (switch IME states is not possible...)
+- [ ] Custom QT Widgets
+    - [X] Clickable Text Label
+    - [X] Clickable Image Label
+    - [x] Color Animated Clickable Label
+    - [ ] Position Animated Clickable Label
 - [ ] Customizability
     - [X] Global Font Default Size
     - [ ] Colors in config files for global color settings
 - [ ] Fixes
     - [ ] Backchecking Existing Config File for Updated Setting Fields
+- [ ] Major Refactors
+    - [ ] Allow for multi-file dependencies for components
 
 ## Setup 
 > [!Important]

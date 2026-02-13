@@ -27,12 +27,12 @@ class ClockLabel(QLabel):
     def get_time_str(self):
         return datetime.now().strftime('%a, %d %b, %H:%M:%S')
 
-def get_widget(layout_config):
+def get_widget(layout_config) -> QWidget:
     widget = ClockWidget()
     widget.setFixedHeight(layout_config[LayoutFields.WINBAR_COMPONENT_HEIGHT])
     widget.setStyleSheet(f"""
         border-radius: {layout_config[LayoutFields.WINBAR_COMPONENT_HEIGHT] // 2}px;
         background-color: #222222;
-        font-size: 14px;
+        font-size: {layout_config[LayoutFields.GLOBAL_FONT_SIZE]}px;
     """)
     return widget 

@@ -27,3 +27,4 @@ class AppbarDirection(IntEnum):
 class WindowsDLL(Enum):
     USER32  = ctypes.windll.user32
     SHELL32 = ctypes.windll.shell32
+    IMM32   = ctypes.windll.imm32

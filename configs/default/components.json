@@ -6,6 +6,8 @@
     "clock"
   ],
   "RIGHT": [
-
+    "language_control",
+    "wifi_control",
+    "sound_control"
   ]
 }

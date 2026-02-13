@@ -6,7 +6,7 @@ class ClickableLabel(QLabel):
 
     def __init__(self, parent=None, text=""):
         if parent is not None:
-            super().__init__(text, parent)
+            super().__init__(text=text, parent=parent)
         else:
             super().__init__(text)
 

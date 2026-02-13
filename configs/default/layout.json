@@ -1,11 +1,11 @@
 {
-  "winbar_component_height": 40,
+  "winbar_component_height": 50,
   "winbar_margins": {
     "left": 5,
     "right": 5,
     "top": 5,
     "bottom": 5
   },
-  "global_font": "Roboto",
-  "global_font_size": 12
+  "global_font": "Urbanist",
+  "global_font_size": 16
 }
